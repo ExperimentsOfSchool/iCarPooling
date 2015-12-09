@@ -72,7 +72,7 @@
     <div class="input-control text">
         <input type="text" id="to_where" placeholder="目的地">
     </div>
-    <div><button class="button" id="generator"><span class="mif-checkmark"></span>生成订单</button></div>
+    <div><button class="button" id="generator" onclick="showDialog('#dialog')"><span class="mif-checkmark"></span>生成订单</button></div>
     <script type="text/javascript">
         $(function() {
             $('#datepicker').datepicker();
@@ -80,6 +80,13 @@
     </script>
 </div>
 <div id="container"></div>
+<div data-role="dialog" data-width="600" data-height="190" data-type="info" data-close-button="true" id="dialog">
+    <h1 style="margin-left: 20px;">确认您的订单</h1>
+    <h4 id="date_select" style="margin-left: 40px;"></h4>
+    <h4 id="from_select" style="margin-left: 40px;"></h4>
+    <h4 id="to_select" style="margin-left: 40px;"></h4>
+    <div style="text-align: right; margin-right: 10px;"><button class="button" onclick="hideDialog()"><span class="mif-checkmark"></span>提交</button></div>
+</div>
 <script type="text/javascript">
     var map = new AMap.Map('container', {
         level: 12,
@@ -88,11 +95,19 @@
     function setCity(event) {
         alert(event.value);
     }
-    $('#generator').click(function() {
-        alert($('#to_where').val())
-    });
-</script>
-<script type="text/javascript">
+    function showDialog(id) {
+        var dialog = $(id).data('dialog');
+        var date_selected = $('#date').val();
+        var from = $('#from_where').val();
+        var to = $('#to_where').val();
+        $('#date_select').text('日期:' + date_selected);
+        $('#from_select').text('出发地:' + from);
+        $('#to_select').text('目的地:' + to);
+        dialog.open();
+    }
+    function hideDialog() {
+        $('#dialog').css('visibility', 'hidden');
+    }
 </script>
 </body>
 </html>
