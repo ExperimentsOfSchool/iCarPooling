@@ -1,0 +1,12 @@
+#sidebar{
+    float: left;
+    width: 200px;
+    height: 100%;
+    background: #3c3f41;
+    text-align: center;
+}
+
+#container {
+    /*width: 800px;*/
+    height: 100%;
+}
